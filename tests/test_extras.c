@@ -45,6 +45,9 @@
     #define NBITS_FIELD128    0
 #endif
 
+static uint64_t p64[2] = { 0x36BC9ABFFFFF }; /* p64 = 2^22*3^15 - 1 */
+#define NBITS_FIELD64 46
+
 static uint64_t p434[7]  = { 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFDC1767AE2FFFFFF, 
                              0x7BC65C783158AEA3, 0x6CFC5FD681C52056, 0x0002341F27177344 };
 static uint64_t p503[8]  = { 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xABFFFFFFFFFFFFFF, 
@@ -107,6 +110,23 @@ static void sub_test(digit_t* a, digit_t* b, digit_t* c, unsigned int nwords)
     } 
 }
 
+
+void fprandom64_test(digit_t* a)
+{ // Generating a pseudo-random field element in [0, p128-1] 
+  // SECURITY NOTE: distribution is not fully uniform. TO BE USED FOR TESTING ONLY.
+    unsigned int i, diff = 64-NBITS_FIELD64, nwords = NBITS_TO_NWORDS(NBITS_FIELD64);                    
+    unsigned char* string = NULL;
+
+    string = (unsigned char*)a;
+    for (i = 0; i < sizeof(digit_t)*nwords; i++) {
+        *(string + i) = (unsigned char)rand();              // Obtain 128-bit number
+    }
+    a[nwords-1] &= (((digit_t)(-1) << diff) >> diff);
+
+    while (compare_words((digit_t*)p64, a, nwords) < 1) {  // Force it to [0, modulus-1]
+        sub_test(a, (digit_t*)p64, a, nwords);
+    }
+}
 
 void fprandom128_test(digit_t* a)
 { // Generating a pseudo-random field element in [0, p128-1] 
@@ -177,6 +197,14 @@ void fprandom751_test(digit_t* a)
     while (compare_words((digit_t*)p751, a, nwords) < 1) {  // Force it to [0, modulus-1]
         sub_test(a, (digit_t*)p751, a, nwords);
     }
+}
+
+void fp2random64_test(digit_t* a)
+{ // Generating a pseudo-random element in GF(p64^2) 
+  // SECURITY NOTE: distribution is not fully uniform. TO BE USED FOR TESTING ONLY.
+
+    fprandom64_test(a);
+    fprandom64_test(a+NBITS_TO_NWORDS(NBITS_FIELD64));
 }
 
 
