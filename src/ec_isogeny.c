@@ -39,14 +39,14 @@ void xDBLe(const point_proj_t P, point_proj_t Q, const f2elm_t A24plus, const f2
 
 #if (OALICE_BITS % 2 == 1)
 
-void get_2_isog(const point_proj_t P, f2elm_t A, f2elm_t C)
+void get_2_isog(const point_proj_t P, f2elm_t A24plus, f2elm_t C24)
 { // Computes the corresponding 2-isogeny of a projective Montgomery point (X2:Z2) of order 2.
   // Input:  projective point of order two P = (X2:Z2).
-  // Output: the 2-isogenous Montgomery curve with projective coefficients A/C.
+  // Output: the 2-isogenous Montgomery curve with projective coefficients A24plus/C24.
     
-    fp2sqr_mont(P->X, A);                           // A = X2^2
-    fp2sqr_mont(P->Z, C);                           // C = Z2^2
-    fp2sub(C, A, A);                                // A = Z2^2 - X2^2
+    fp2sqr_mont(P->X, A24plus);                     // A24plus = X2^2
+    fp2sqr_mont(P->Z, C24);                         // C24 = Z2^2
+    fp2sub(C24, A24plus, A24plus);                  // A24plus = Z2^2 - X2^2
 }
 
 
