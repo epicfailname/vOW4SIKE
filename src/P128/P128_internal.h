@@ -18,7 +18,7 @@
 
 // Basic constants
 
-#ifdef p_32_20         // sidh: works, sike: works
+#if (defined p_32_20 || defined p_32_20_ver2)         // sidh: works, sike: works
     #define NBITS_FIELD 69
 #elif defined p_36_22  // sidh: works, sike: works
     #define NBITS_FIELD 76

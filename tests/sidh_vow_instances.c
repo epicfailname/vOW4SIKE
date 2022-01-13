@@ -24,6 +24,30 @@ instance_t insts_stats[NUM_INSTS_STATS] = {
              .xq = {0x13E5C49616025EB1, 0x11, 0xD4D573F7A00911FA, 0x4},
              .xpq = {0x3019C8E745061408, 0xE, 0x349BC9BDE78E1278, 0x7},
          }}}};
+#elif defined(p_32_20_ver2)
+#define NUM_INSTS_STATS 1
+instance_t insts_stats[NUM_INSTS_STATS] = {
+    {.MODULUS = "p_32_20_v2",
+     .NBITS_K = 15,
+     .MEMORY_LOG_SIZE = 9,
+     .ALPHA = 2.25,
+     .BETA = 10.,
+     .GAMMA = 20.,
+     .PRNG_SEED = 1337,
+     .jinv = {0xE288312C110BB07F, 0x2, 0xD6729811A673285A, 0x4},
+     .E = {
+         {
+             .a24 = {0xB3FDF7D5B1741A56, 0x9, 0x0, 0x0},
+             .xp = {0x263C56D672D990E8, 0xA, 0x6C06723B611610CD, 0x2},
+             .xq = {0x189B0565A4BE7E4B, 0x2, 0x830D924A849BCCEA, 0x9},
+             .xpq = {0x1160EC4585DFB421, 0xF, 0x5AED1AFA01BE4556, 0xF},
+         },
+         {
+             .a24 = {0x74A1A165D9FAF4F9, 0xD, 0xA1C01E309B88DDE7, 0xB},
+             .xp = {0xB3862C812DD62314, 0x3, 0x521926F52A7C5488, 0xE},
+             .xq = {0xB5E5789CB3F19628, 0xD, 0x5C6C11DAC7ADAB1F, 0xC},
+             .xpq = {0xC652E948CEBD0B2E, 0xA, 0x68E4953A8AE17740, 0xE},
+         }}}};
 #elif defined(p_36_22)
 #define NUM_INSTS_STATS 1
 instance_t insts_stats[NUM_INSTS_STATS] = {
@@ -218,4 +242,28 @@ instance_t insts_stats[NUM_INSTS_STATS] = {
             }}
     }
 };
+#elif defined(p_4_3)
+#define NUM_INSTS_STATS 1
+instance_t insts_stats[NUM_INSTS_STATS] = {
+    {.MODULUS = "p_4_3",
+     .NBITS_K = 2,
+     .MEMORY_LOG_SIZE = 2,
+     .ALPHA = 2.25,
+     .BETA = 10.,
+     .GAMMA = 20.,
+     .PRNG_SEED = 1337,
+     .jinv = {0x8B7516529AB197CB, 0x81A9A4D07F7A660, 0x714920C82BDA2001, 0xC547C48B9C3A244},
+     .E = {
+         {
+             .a24 = {0xF930648E75B7B02, 0x1CBBCCC43606B060, 0xA0774309743DD761, 0x3A1E5A234C177637},
+             .xp = {0x1E39EABFBA272D88, 0x1C8B8F8C4CBF5E2B, 0xE32FF4D09B5C55F3, 0x326AFBF252FCC890},
+             .xq = {0xF6989AED51FACE6C, 0x30E9B909787463EE, 0x932757D32E4C2386, 0x14CA8E398521792A},
+             .xpq = {0xB0C0702B028E73EA, 0x1A9EB9332A0E2B49, 0xAD8E41C6323A7187, 0x39A70907266DF35E},
+         },
+         {
+             .a24 = {0xE501F1498BFD9C5F, 0x4213F826FBA1CD2E, 0xF8FAB7BDF548DEF4, 0x15B5AE4150593F58},
+             .xp = {0x6AA8833297C80EDD, 0x36775CB8AD388526, 0x5909C1F233929A0F, 0x1E155B7EAF673DBC},
+             .xq = {0xFDE3E4BDB7A49C2A, 0xAF5506745D90CC4, 0x34C4DCA1A2DC0101, 0x2D5D0DE11D479AD7},
+             .xpq = {0xFE9411686F5DBA9A, 0xDCCA32ABE1FDAC9, 0x78347535B8DBF7C1, 0x30C5AE7FF6AC7BB4},
+         }}}};
 #endif
